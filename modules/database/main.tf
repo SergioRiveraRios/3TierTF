@@ -1,9 +1,8 @@
 resource "aws_db_subnet_group" "db-subnetgroup" {
   name       = "main"
   subnet_ids = ["${var.aws-dbsubnetgroupAZ1}", "${var.aws-dbsubnetgroupAZ2}"]
-
   tags = {
-    Name = "My DB subnet group"
+    Name = "DBgroup"
   }
 }
 /*
@@ -19,3 +18,18 @@ resource "aws_rds_cluster" "aws-db-cluster" {
   db_subnet_group_name = aws_db_subnet_group.db-subnetgroup.name
   vpc_security_group_ids = [ "${var.aws-securitygroup}"]
 }*/
+
+/*resource "aws_rds_cluster" "multi_az_cluster" {
+  cluster_identifier  = "db-cluster"
+  engine              = "mysql"
+  # Deploys as a Multi-AZ Cluster (1 writer, 2 readable standbys)
+  # instead of an Aurora cluster
+  
+  engine_mode         = "provisioned" 
+  db_cluster_instance_class = "t3.small"
+  db_subnet_group_name   = aws_db_subnet_group.db-subnetgroup.name
+  vpc_security_group_ids = ["${var.aws-db-security-group}"]
+  master_username        = "db_admin"
+  master_password        = "admin1234"
+  skip_final_snapshot    = true
+}

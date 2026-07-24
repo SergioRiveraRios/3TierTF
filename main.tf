@@ -9,8 +9,8 @@ terraform {
 # Configure the AWS Provider
 provider "aws" {
   region = "us-east-1"
-  access_key = ""
-  secret_key = ""
+  access_key = "AKIAV4HO23T73UGDW7VJ"
+  secret_key = "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"
 }
 
 module "network" {
@@ -28,7 +28,7 @@ module "database" {
   source = "./modules/database"
   aws-dbsubnetgroupAZ1 = module.network.aws-dbsubnet-groupAZ1
   aws-dbsubnetgroupAZ2 = module.network.aws-dbsubnet-groupAZ2
-  aws-securitygroup = module.security.aws-db-securitygroup
+  aws-db-security-group = module.security.aws-db-securitygroup
 }
 module "ec2" {
   source = "./modules/ec2"
@@ -38,4 +38,9 @@ module "ec2" {
   security-group2 = module.security.aws-web-securitygroup-app
   subnet-id3 = module.network.aws-dbsubnet-groupAZ1
   security-group3 = module.security.aws-db-securitygroup
+}
+module "s3" {
+  source = "./modules/s3"
+  bucket_name = "test123-123"
+  bucket_region = "us-east-1"
 }

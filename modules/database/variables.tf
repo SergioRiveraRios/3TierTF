@@ -7,7 +7,7 @@ variable "aws-dbsubnetgroupAZ2" {
     type = string
     description = "subnets of the db subgroup"
 }
-variable "aws-securitygroup" {
+variable "aws-db-security-group" {
   type = string
-  description = "security group for DB"
+    description = "subnets of the db subgroup"
 }
