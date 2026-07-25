@@ -34,9 +34,12 @@ module "ec2" {
   source = "./modules/ec2"
   subnet-id = module.network.aws-appsubnet-groupAZ2
   security-group = module.security.aws-app-securitygroup-app
+  #adadadadad
 }
 module "s3" {
   source = "./modules/s3"
   bucket_name = "test123-123"
   bucket_region = "us-east-1"
 }
+
+
