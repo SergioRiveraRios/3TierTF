@@ -9,7 +9,7 @@ resource "aws_instance" "aws-test" {
     iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
     
 }
-
+/*
 resource "aws_instance" "aws-test2" {
     instance_type = "t3.micro"
     subnet_id = "${var.subnet-id2}"
@@ -33,7 +33,7 @@ resource "aws_instance" "aws-test3" {
     iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
     
 }
-
+*/
 resource "aws_iam_role" "ssm_role" {
   name = "ec2-ssm-role"
   assume_role_policy = jsonencode({
