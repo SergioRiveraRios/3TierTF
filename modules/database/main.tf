@@ -17,9 +17,9 @@ resource "aws_rds_cluster" "aws-db-cluster" {
   master_password           = "admin1234"
   db_subnet_group_name = aws_db_subnet_group.db-subnetgroup.name
   vpc_security_group_ids = [ "${var.aws-securitygroup}"]
-}*/
+}
 
-/*resource "aws_rds_cluster" "multi_az_cluster" {
+resource "aws_rds_cluster" "multi_az_cluster" {
   cluster_identifier  = "db-cluster"
   engine              = "mysql"
   # Deploys as a Multi-AZ Cluster (1 writer, 2 readable standbys)
@@ -32,4 +32,4 @@ resource "aws_rds_cluster" "aws-db-cluster" {
   master_username        = "db_admin"
   master_password        = "admin1234"
   skip_final_snapshot    = true
-}
+}*/
