@@ -35,6 +35,7 @@ module "ec2" {
   subnet-id = module.network.aws-appsubnet-groupAZ2
   security-group = module.security.aws-app-securitygroup-app
   #adadadadad
+  #added more lines
 }
 module "s3" {
   source = "./modules/s3"
