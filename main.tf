@@ -38,6 +38,7 @@ module "ec2" {
   #more comment
   #sdfsdfsdf
   #more 
+  #more
   }
 module "s3" {
   source = "./modules/s3"
