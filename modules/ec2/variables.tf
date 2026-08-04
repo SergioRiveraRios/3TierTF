@@ -6,7 +6,7 @@ variable "security-group" {
   type = string
   description = "securitygroup"
 }
-/*
+
 variable "subnet-id2" {
   type = string
   description = "subnetID"
@@ -23,4 +23,4 @@ variable "subnet-id3" {
 variable "security-group3" {
   type = string
   description = "securitygroup"
-}*/
+}
