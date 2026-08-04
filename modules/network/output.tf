@@ -18,7 +18,11 @@ output "aws-appsubnet-groupAZ2" {
     description = "app subnet for the app subnet group"
 }
 
-output "aws-websubnet-group" {
+output "aws-websubnet-group1" {
+   value = values(aws_subnet.subnets_az1)[2].id
+    description = "app subnet for the app subnet group"
+}
+output "aws-websubnet-group2" {
    value = values(aws_subnet.subnets_az2)[2].id
     description = "app subnet for the app subnet group"
 }
