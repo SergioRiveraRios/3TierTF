@@ -12,3 +12,6 @@ output "aws-web-securitygroup-app" {
   value = aws_security_group.aws-webtier-sg.id
   description = "security group for app"
 }
+output "aws-loadbalancer-external" {
+  value = aws_security_group.aws-loadbalancer-internet.id
+}
