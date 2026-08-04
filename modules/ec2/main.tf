@@ -1,26 +1,32 @@
 resource "aws_instance" "aws-test" {
     instance_type = "t3.micro"
     subnet_id = "${var.subnet-id}"
+    
     ami = "ami-00e801948462f718a"
     tags = {
-        Name = "test"
+        Name = "APPTier"
     }
     vpc_security_group_ids = [ "${var.security-group}" ]
     iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
     
 }
-/*
+
 resource "aws_instance" "aws-test2" {
     instance_type = "t3.micro"
     subnet_id = "${var.subnet-id2}"
     ami = "ami-00e801948462f718a"
     associate_public_ip_address = true
     tags = {
-        Name = "test2"
+        Name = "WebTier"
     }
     vpc_security_group_ids = [ "${var.security-group2}" ]
     iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
-    
+    user_data = <<-EOF
+      #!/bin/bash
+      sudo yum install nginx -y
+      sudo systemctl start nginx
+      sudo systemctl enable nginx
+    EOF
 }
 resource "aws_instance" "aws-test3" {
     instance_type = "t3.micro"
@@ -33,7 +39,7 @@ resource "aws_instance" "aws-test3" {
     iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
     
 }
-*/
+
 resource "aws_iam_role" "ssm_role" {
   name = "ec2-ssm-role"
   assume_role_policy = jsonencode({
@@ -56,8 +62,15 @@ resource "aws_iam_role_policy_attachment" "ssm_attach" {
 }
 
 
-
 resource "aws_iam_instance_profile" "ssm_profile" {
   name = "ec2-ssm-profile"
   role = aws_iam_role.ssm_role.name
 }
+
+
+resource "aws_ami_from_instance" "WebTier" {
+  name = "Web tier AMI"
+  source_instance_id = aws_instance.aws-test2.id
+  depends_on = [ aws_instance.aws-test2 ]
+}
+
