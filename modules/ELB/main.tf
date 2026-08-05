@@ -32,6 +32,7 @@ resource "aws_launch_template" "WebTier" {
 }   
 #testttt
 #test2
+#more test
 
 resource "aws_autoscaling_group" "WebTier" {
     name = "WebTierASG"
