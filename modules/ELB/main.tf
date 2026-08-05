@@ -9,12 +9,20 @@ resource "aws_alb" "WebTierALB" {
   name               = "WebTierALB"
   internal           = false
   load_balancer_type = "application"
-
   security_groups    = [ "${var.ALB_security_group}" ]
   subnets            = ["${var.ALB_Subnet1}","${var.ALB_Subnet2}"]
   enable_deletion_protection = true
 }
 
+resource "aws_lb_listener" "WebTierTG" {
+  load_balancer_arn = aws_alb.WebTierALB.arn
+  port = "80"
+  protocol = "HTTP"
+  default_action {
+    type = "forward"
+    target_group_arn = aws_alb_target_group.WebTierTG.arn
+  }
+}
 resource "aws_launch_template" "WebTier" {
     name = "WebTierLaunchTemplate"
     depends_on = [ var.ami_webtier ]
