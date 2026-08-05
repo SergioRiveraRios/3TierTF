@@ -30,6 +30,7 @@ resource "aws_launch_template" "WebTier" {
     instance_type = "t2.micro"
     vpc_security_group_ids = [ var.web-tier-security-group ]
 }   
+#testttt
 
 resource "aws_autoscaling_group" "WebTier" {
     name = "WebTierASG"
