@@ -31,6 +31,7 @@ resource "aws_launch_template" "WebTier" {
     vpc_security_group_ids = [ var.web-tier-security-group ]
 }   
 #testttt
+#test2
 
 resource "aws_autoscaling_group" "WebTier" {
     name = "WebTierASG"
