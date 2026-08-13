@@ -37,11 +37,13 @@ module "ec2" {
   security-group3 = module.security.aws-app-securitygroup-app
   }
 
+#ctm
 module "s3" {
   source = "./modules/s3"
   bucket_name = "test123-123"
   bucket_region = "us-east-1"
 }
+
 module "alb" {
   source = "./modules/ELB"
   aws-vpc = module.network.vpc-id
