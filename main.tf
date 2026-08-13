@@ -37,7 +37,7 @@ module "ec2" {
   security-group3 = module.security.aws-app-securitygroup-app
   }
 
-#ctm
+
 module "s3" {
   source = "./modules/s3"
   bucket_name = "test123-123"
