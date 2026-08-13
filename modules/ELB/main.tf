@@ -13,7 +13,7 @@ resource "aws_alb" "WebTierALB" {
   subnets            = ["${var.ALB_Subnet1}","${var.ALB_Subnet2}"]
   enable_deletion_protection = true
 }
-
+#test test
 resource "aws_lb_listener" "WebTierTG" {
   load_balancer_arn = aws_alb.WebTierALB.arn
   port = "80"
@@ -32,6 +32,7 @@ resource "aws_launch_template" "WebTier" {
 }   
 #testttt
 #test2
+#more test
 
 resource "aws_autoscaling_group" "WebTier" {
     name = "WebTierASG"
