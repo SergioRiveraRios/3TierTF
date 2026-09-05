@@ -39,8 +39,6 @@ module "ec2" {
 
 module "s3" {
   source = "./modules/s3"
-  bucket_name = "test123-123"
-  bucket_region = "us-east-1"
 }
 module "alb" {
   source = "./modules/ELB"
