@@ -1,4 +1,9 @@
 terraform {
+  backend "s3" {
+    bucket = "test-tfstate-843062504954-us-east-1-an"
+    key = "lock/test/terraform.tfstate"
+    region = "us-east-1"
+  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -8,6 +13,7 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
+  region = "us-east-1"
 }
 
 module "network" {
@@ -36,10 +42,10 @@ module "ec2" {
   subnet-id3 = module.network.aws-dbsubnet-groupAZ1
   security-group3 = module.security.aws-app-securitygroup-app
   }
-
+/*
 module "s3" {
   source = "./modules/s3"
-}
+}*/
 module "alb" {
   source = "./modules/ELB"
   aws-vpc = module.network.vpc-id
